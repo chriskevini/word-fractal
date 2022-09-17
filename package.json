@@ -9,14 +9,26 @@
     "build-prod": "vite build --mode production",
     "preview": "vite preview --host",
     "deploy-dev": "firebase deploy --only hosting:dev --project word-fractal-dev",
-    "deploy-prod": "firebase deploy --only hosting:wordfractal --project word-fractal",
+    "deploy-prod": "firebase deploy --only hosting --project word-fractal",
     "functions-dev": "firebase deploy --only functions --project word-fractal-dev",
     "functions-prod": "firebase deploy --only functions --project word-fractal"
   },
   "dependencies": {
+    "@emoji-mart/data": "^1.0.5",
+    "@emoji-mart/react": "^1.0.1",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@fontsource/ubuntu": "^4.5.11",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/lab": "^5.0.0-alpha.96",
+    "@mui/material": "^5.10.1",
+    "@mui/system": "^5.10.5",
+    "emoji-mart": "^5.2.2",
     "firebase": "^9.10.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-firebase-hooks": "^5.0.3",
+    "react-window": "^1.8.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

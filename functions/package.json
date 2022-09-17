@@ -7,15 +7,22 @@
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "deploy-dev": "firebase deploy --only hosting:dev --project word-fractal-dev",
+    "deploy-prod": "firebase deploy --only hosting --project word-fractal",
+    "functions-dev": "firebase deploy --only functions --project word-fractal-dev",
+    "functions-prod": "firebase deploy --only functions --project word-fractal"
   },
   "engines": {
     "node": "16"
   },
   "main": "index.js",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "firebase-admin": "^10.0.2",
-    "firebase-functions": "^3.18.0"
+    "firebase-functions": "^3.18.0",
+    "pako": "^2.0.4",
+    "unsplash-js": "^7.0.15"
   },
   "devDependencies": {
     "eslint": "^8.9.0",

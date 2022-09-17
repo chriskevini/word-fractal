@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "word-fractal-dev"
-  }
+  },
+  "targets": {
+    "word-fractal": {
+      "hosting": {
+        "dev": [
+          "word-fractal"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

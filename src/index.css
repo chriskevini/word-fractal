@@ -1,70 +1,119 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  /* justify-content: center; */
+  /* align-content: center; */
+  /* min-width: 320px; */
+  /* min-height: 100vh; */
+  font-display: block;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+::-webkit-scrollbar {
+  display: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.cursor {
+  animation: 2s infinite alternate breathing;
+}
+
+@keyframes breathing {
+  from {
+    margin-left: 100%;
+    width: 300%;
   }
-  a:hover {
-    color: #747bff;
+
+  to {
+    margin-left: 0%;
+    width: 100%;
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+em-emoji-picker {
+  --font-family: "ubuntu", helvetica;
+  width: 100%;
+  /* 
+  --background-rgb: 85, 170, 255;
+  --border-radius: 4vmin;
+  --category-icon-size: 24px;
+  --color-border-hover: rgba(0, 0, 0, 0.1);
+  --color-border: rgba(0, 0, 0, 0.05);
+  --font-size: 20px;
+  --rgb-accent: 255, 105, 180;
+  --rgb-background: #fff;
+  --rgb-color: 102, 51, 153;
+  --rgb-input: 255, 235, 235;
+  --shadow: 5px 5px 15px -8px rebeccapurple;
+  height: 50vh; 
+  */
+}
+
+.shakeAnimation {
+  animation: shake 1s;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate(-1px, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate(2px, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate(-3px, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate(3px, 0);
+  }
+}
+
+@keyframes float {
+  /* 0%, 100%{
+    transform: translate(0, -2px);
+  } */
+  50% {
+    transform: translate(0, 4px);
+  }
+}
+
+@keyframes breathe {
+  50% {
+    box-shadow: none;
+  }
+}
+
+@keyframes expand {
+  50% {
+    border: 2px solid;
+  }
+}
+
+@keyframes whiteSmoke {
+  50% {
+    background-color: transparent;
   }
 }
