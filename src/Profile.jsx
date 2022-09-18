@@ -380,6 +380,7 @@ function Profile({
       .then((res) => {
         cleanUpState();
         if (res.data.status === "error") handleAlert(res.data);
+        else handleAlert({status: "info", message: "Looking fresh 😏"});
         onSubmitChanges();
       })
       .catch(console.log);
