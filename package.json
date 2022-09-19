@@ -8,10 +8,12 @@
     "build-dev": "vite build --mode development",
     "build-prod": "vite build --mode production",
     "preview": "vite preview --host",
-    "deploy-dev": "firebase deploy --only hosting:dev --project word-fractal-dev",
+    "deploy-dev": "firebase deploy --only hosting --project word-fractal-dev",
     "deploy-prod": "firebase deploy --only hosting --project word-fractal",
     "functions-dev": "firebase deploy --only functions --project word-fractal-dev",
-    "functions-prod": "firebase deploy --only functions --project word-fractal"
+    "functions-prod": "firebase deploy --only functions --project word-fractal",
+    "bd-dev": "npm run build-dev && npm run deploy-dev",
+    "bd-prod": "npm run build-prod && npm run deploy-prod"
   },
   "dependencies": {
     "@emoji-mart/data": "^1.0.5",

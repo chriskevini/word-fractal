@@ -14,12 +14,7 @@
   },
   "hosting": [
     {
-      "target": "dev",
-      "public": "dist",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
-    },
-    {
-      "site": "wordfractal",
+      "target": "default",
       "public": "dist",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     }

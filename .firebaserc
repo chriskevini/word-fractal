@@ -5,8 +5,15 @@
   "targets": {
     "word-fractal": {
       "hosting": {
-        "dev": [
+        "default": [
           "word-fractal"
+        ]
+      }
+    },
+    "word-fractal-dev": {
+      "hosting": {
+        "default": [
+          "word-fractal-dev"
         ]
       }
     }
