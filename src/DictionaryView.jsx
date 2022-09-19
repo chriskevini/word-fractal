@@ -4,14 +4,16 @@ import {
   Paper,
   Typography,
   Zoom,
+  IconButton,
 } from "@mui/material";
-import { Box, Stack } from "@mui/system";
-import { Timestamp } from "firebase/firestore";
-import React, { useEffect } from "react";
-import { useMemo } from "react";
-import { useLocalStorage } from "./useLocalStorage";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import {Box, Stack} from "@mui/system";
+import {Timestamp} from "firebase/firestore";
+import React, {useEffect} from "react";
+import {useMemo} from "react";
+import {useLocalStorage} from "./useLocalStorage";
 import imgNotFound from "../image-not-found.jpg";
-import { useState } from "react";
+import {useState} from "react";
 
 function DictionaryView({
   playedWords,
@@ -141,8 +143,22 @@ function DictionaryView({
           }}
         />
 
-        <Box sx={{ lineHeight: 1.5, fontSize: "30px", textAlign: "center" }}>
+        <Box
+          sx={{
+            lineHeight: 1.5,
+            fontSize: "30px",
+            textAlign: "center",
+            position: "relative",
+            // alignItems: "center",
+          }}>
           {kanji || word}
+          {audio && (
+            <IconButton
+              onClick={() => new Audio(audio).play()}
+              sx={{mr: "-1.25em", p: 0, pl: "0.25em"}}>
+              <VolumeUpIcon />
+            </IconButton>
+          )}
         </Box>
         <Stack
           direction="row"
@@ -154,23 +170,22 @@ function DictionaryView({
             opacity: 0.5,
             fontSize: "0.8rem",
           }}>
-          <span style={{ fontStyle: "italic" }}>{pos}</span>
+          <span style={{fontStyle: "italic"}}>{pos}</span>
           <span>
             {pronunciation || pitch?.map((e) => e.part)?.join("") || ""}
           </span>
         </Stack>
-        <Box sx={{ mx: "1rem", mb: "1rem" }}>
+        <Box sx={{mx: "1rem", mb: "1rem"}}>
           {(preferEnDefinitions ? enDefinition : jpTranslation) ||
             enTranslation}
         </Box>
-        <Box
-          sx={{ mx: "1rem", mb: "0.25rem", opacity: 0.5, fontSize: "0.8rem" }}>
+        <Box sx={{mx: "1rem", mb: "0.25rem", opacity: 0.5, fontSize: "0.8rem"}}>
           {preferEnDefinitions ? "" : jpSentence}
         </Box>
-        <Box sx={{ mx: "1rem", opacity: 0.5, fontSize: "0.8rem" }}>
+        <Box sx={{mx: "1rem", opacity: 0.5, fontSize: "0.8rem"}}>
           {enSentence}
         </Box>
-        <Box sx={{ flexGrow: 1 }}></Box>
+        <Box sx={{flexGrow: 1}}></Box>
         <Box
           component="a"
           href={
@@ -237,13 +252,13 @@ function DictionaryView({
 export default DictionaryView;
 
 function getParents(playedWords, currentWord) {
-  const { chainCoords } = currentWord;
+  const {chainCoords} = currentWord;
   const startOfWord = chainCoords.split(" ")[0];
   return playedWords.filter((pw) => pw.chainCoords.endsWith(startOfWord));
 }
 
 function getSiblings(playedWords, currentWord) {
-  const { chainCoords } = currentWord;
+  const {chainCoords} = currentWord;
   const startOfWord = chainCoords.split(" ")[0];
   return playedWords.filter(
     (pw) =>
@@ -252,7 +267,7 @@ function getSiblings(playedWords, currentWord) {
 }
 
 function getChildren(playedWords, currentWord) {
-  const { chainCoords } = currentWord;
+  const {chainCoords} = currentWord;
   const endOfWord = chainCoords.split(" ")[chainCoords.split(" ").length - 1]; //.at() broken
   return playedWords.filter((pw) => pw.chainCoords.startsWith(endOfWord));
 }
