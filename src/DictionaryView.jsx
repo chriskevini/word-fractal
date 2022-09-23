@@ -171,9 +171,31 @@ function DictionaryView({
             fontSize: "0.8rem",
           }}>
           <span style={{fontStyle: "italic"}}>{pos}</span>
-          <span>
-            {pronunciation || pitch?.map((e) => e.part)?.join("") || ""}
-          </span>
+          <span>{pronunciation}</span>
+          {pitch && (
+            <Stack direction="row">
+              {pitch.map((str, i) => {
+                return (
+                  <Box
+                    key={i}
+                    sx={{
+                      pt: "1px",
+                      lineHeight: 1,
+                      border: "text.primary",
+                      borderTop: str.high
+                        ? "1px solid"
+                        : "1px solid transparent",
+                      borderBottom: str.high
+                        ? "1px solid transparent"
+                        : "1px solid",
+                      borderLeft: i === 0 ? "" : "1px solid",
+                    }}>
+                    {str.part}
+                  </Box>
+                );
+              })}
+            </Stack>
+          )}
         </Stack>
         <Box sx={{mx: "1rem", mb: "1rem"}}>
           {(preferEnDefinitions ? enDefinition : jpTranslation) ||
