@@ -3,8 +3,8 @@ import {Box, Button, IconButton, Stack, Typography, Zoom} from "@mui/material";
 import {collection, orderBy, query} from "firebase/firestore";
 import React, {useContext, useMemo} from "react";
 import {useCollectionData} from "react-firebase-hooks/firestore";
-import bgDark from "../bg-dark.webp";
-import bgLight from "../bg-light.webp";
+import bgDark from "/assets/bg-dark.webp";
+import bgLight from "/assets/bg-light.webp";
 import {DarkModeContext, db} from "./App";
 
 function GameSelector({handleChooseGame}) {

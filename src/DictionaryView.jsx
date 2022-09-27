@@ -12,7 +12,7 @@ import {Timestamp} from "firebase/firestore";
 import React, {useEffect} from "react";
 import {useMemo} from "react";
 import {useLocalStorage} from "./useLocalStorage";
-import imgNotFound from "../image-not-found.jpg";
+import imgNotFound from "/assets/image-not-found.jpg";
 import {useState} from "react";
 
 function DictionaryView({
