@@ -1,8 +1,8 @@
-import { Box, Dialog } from "@mui/material";
+import {Box, Dialog} from "@mui/material";
 import React from "react";
-import { vmin } from "./utils";
+import {vmin} from "./utils";
 
-function Tutorial({ open = false, onClose }) {
+function Tutorial({open = false, onClose}) {
   return (
     <Dialog
       open={open}
@@ -41,8 +41,8 @@ function Tutorial({ open = false, onClose }) {
           // controls
           width="100%"
           height="100%"
-          style={{ objectFit: "cover" }}>
-          <source src="https://firebasestorage.googleapis.com/v0/b/test-43d5b.appspot.com/o/WordFractalTutorial.mp4?alt=media&token=4f4c8cce-f448-4d1c-a75a-de27c18e7ae0" />
+          style={{objectFit: "cover"}}>
+          <source src="https://firebasestorage.googleapis.com/v0/b/word-fractal-dev.appspot.com/o/tutorial.webm?alt=media&token=a7e477a4-be0c-42d4-8f98-2343e7a12a54" />
         </video>
       </Box>
     </Dialog>
