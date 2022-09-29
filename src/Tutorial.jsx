@@ -31,8 +31,8 @@ function Tutorial({open = false, onClose}) {
           animation: "fade 4s infinite",
           animationDelay: "-1s",
         }}
-        width="70vw"
-        height="70vw"
+        width="70vmin"
+        height="70vmin"
         borderRadius={3}
         overflow="hidden">
         <video
