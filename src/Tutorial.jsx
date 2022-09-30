@@ -42,7 +42,7 @@ function Tutorial({open = false, onClose}) {
           width="100%"
           height="100%"
           style={{objectFit: "cover"}}>
-          <source src="https://firebasestorage.googleapis.com/v0/b/word-fractal-dev.appspot.com/o/tutorial.webm?alt=media&token=a7e477a4-be0c-42d4-8f98-2343e7a12a54" />
+          <source src="https://firebasestorage.googleapis.com/v0/b/word-fractal-dev.appspot.com/o/tutorial-optimized.mp4?alt=media&token=5c62cc26-c3a5-473c-b4f3-599498a22dff" />
         </video>
       </Box>
     </Dialog>
