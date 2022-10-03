@@ -53,12 +53,11 @@ function GameMenu({ setGameId, player, buttonStyle = {}, setIsTutorialOpen }) {
           height: "min(16vw,4rem)",
           minWidth: "",
           ...buttonStyle,
-        }}
-      >
+        }}>
         <MenuIcon />
       </Button>
       <Menu
-        keepMounted
+        // keepMounted
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -74,13 +73,11 @@ function GameMenu({ setGameId, player, buttonStyle = {}, setIsTutorialOpen }) {
         transformOrigin={{
           vertical: "bottom",
           horizontal: "right",
-        }}
-      >
+        }}>
         <MenuItem
           onClick={(e) => {
             setIsTutorialOpen(true);
-          }}
-        >
+          }}>
           <ListItemIcon>
             <HelpIcon />
           </ListItemIcon>
@@ -108,8 +105,7 @@ function GameMenu({ setGameId, player, buttonStyle = {}, setIsTutorialOpen }) {
             sx={{
               color: "text.primary",
               textDecoration: "none",
-            }}
-          >
+            }}>
             Report A Bug
           </Box>
         </MenuItem>
@@ -117,8 +113,7 @@ function GameMenu({ setGameId, player, buttonStyle = {}, setIsTutorialOpen }) {
           onClick={(e) => {
             toggleDarkMode();
             e.stopPropagation();
-          }}
-        >
+          }}>
           <ListItemIcon>
             <Brightness4Icon />
           </ListItemIcon>
@@ -128,8 +123,7 @@ function GameMenu({ setGameId, player, buttonStyle = {}, setIsTutorialOpen }) {
           onClick={(e) => {
             toggleFullscreen();
             // e.stopPropagation();
-          }}
-        >
+          }}>
           <ListItemIcon>
             <FullscreenIcon />
           </ListItemIcon>
@@ -159,8 +153,7 @@ function GameMenu({ setGameId, player, buttonStyle = {}, setIsTutorialOpen }) {
         onClose={() => setIsProfileModalOpen(false)}
         onSubmitChanges={() => {
           setIsProfileModalOpen(false);
-        }}
-      ></Profile>
+        }}></Profile>
 
       <Leaderboard
         open={isLeaderboardOpen}
@@ -169,4 +162,4 @@ function GameMenu({ setGameId, player, buttonStyle = {}, setIsTutorialOpen }) {
     </>
   );
 }
-export default GameMenu;
+export default React.memo(GameMenu);
