@@ -36,12 +36,14 @@ function ColorPicker({ onColorPicked, open = false, onClose }) {
           minWidth: "80vmin",
           minHeight: "80vmin",
         },
-      }}>
+      }}
+    >
       <Stack direction="column" justifyContent="space-evenly" height="80vmin">
         <Box
           textAlign="center"
           fontSize="10vmin"
-          sx={{ animation: "float 1s infinite" }}>
+          sx={{ animation: "float 1s infinite" }}
+        >
           👇
         </Box>
         <Box
@@ -51,7 +53,8 @@ function ColorPicker({ onColorPicked, open = false, onClose }) {
             flexDirection: "row",
             flexWrap: "wrap",
             mx: "auto",
-          }}>
+          }}
+        >
           {colors.map((color) => (
             <Paper
               onClick={() => onColorPicked(color)}
@@ -63,7 +66,8 @@ function ColorPicker({ onColorPicked, open = false, onClose }) {
                 borderRadius: "8px",
                 margin: "1vmin",
                 cursor: "pointer",
-              }}>
+              }}
+            >
               {/* 🟥🟧🟨🟩🟦🟪 */}
             </Paper>
           ))}

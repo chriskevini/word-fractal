@@ -40,7 +40,8 @@ function AltLetterSelector(props) {
       transformOrigin={{
         vertical: "bottom",
         horizontal: "center",
-      }}>
+      }}
+    >
       <Stack direction="row">
         {altLetters?.map((letter, i) => (
           <BoardTile
@@ -120,14 +121,16 @@ export function WordSubmissionDialog({
             width: Math.min(vmin(92) + 24, 600 + 24),
             borderRadius: 2,
             overflow: "hidden",
-          }}>
+          }}
+        >
           <Stack
             direction="row"
             justifyContent="center"
             sx={{
               m: "12px",
               mb: 0,
-            }}>
+            }}
+          >
             {selection.map((s, i) => {
               const [x, y] = s.coords;
               return (
@@ -140,7 +143,8 @@ export function WordSubmissionDialog({
                         boxShadow: "0 0 0.20em 0.08em " + player.color,
                       },
                     },
-                  }}>
+                  }}
+                >
                   <BoardTile
                     key={x + "," + y + "tile"}
                     letter={s.letter}
@@ -179,7 +183,8 @@ export function WordSubmissionDialog({
           <Stack
             direction="row"
             justifyContent="space-between"
-            alignItems="flex-end">
+            alignItems="flex-end"
+          >
             {/* for spacing */}
             <IconButton>
               <VerticalAlignBottomIcon sx={{ mb: "", opacity: "0" }} />
@@ -190,7 +195,8 @@ export function WordSubmissionDialog({
                   clearSelection();
                   setKanaToggleButton("ア");
                 }}
-                size="small">
+                size="small"
+              >
                 <DisabledByDefaultRoundedIcon
                   sx={{ fontSize: "60px", padding: 0, color: red[400] }}
                 />
@@ -215,7 +221,8 @@ export function WordSubmissionDialog({
                   color: "text.primary",
                   filter: isEnglish ? "opacity(0)" : "opacity(0.5)",
                   pointer: isEnglish ? "" : "pointer",
-                }}>
+                }}
+              >
                 {kanaToggleButton}
               </Button>
               <IconButton
@@ -252,7 +259,8 @@ export function WordSubmissionDialog({
                     });
                 }}
                 size="small"
-                disabled={selection.length < 3}>
+                disabled={selection.length < 3}
+              >
                 <CheckBoxRoundedIcon
                   sx={{
                     fontSize: "60px",
@@ -262,9 +270,7 @@ export function WordSubmissionDialog({
                 />
               </IconButton>
             </Box>
-            <IconButton
-              onClick={toggleSelectionModalLocation}
-              disableRipple>
+            <IconButton onClick={toggleSelectionModalLocation} disableRipple>
               {preferDialogAtTop ? (
                 <VerticalAlignBottomIcon sx={{ mb: "" }} />
               ) : (
@@ -284,7 +290,8 @@ export function WordSubmissionDialog({
         setAltLettersAnchor={setAltLettersAnchor}
         altLetterBackgroundColor={altLetterBackgroundColor}
         altLetterIndex={altLetterIndex}
-        isAltLettersOpen={isAltLettersOpen}></AltLetterSelector>
+        isAltLettersOpen={isAltLettersOpen}
+      ></AltLetterSelector>
     </>
   );
 }

@@ -1,13 +1,13 @@
-import {DialogContent, TextField} from "@mui/material";
-import {collection, doc} from "firebase/firestore";
-import React, {useMemo, useState} from "react";
+import { DialogContent, TextField } from "@mui/material";
+import { collection, doc } from "firebase/firestore";
+import React, { useMemo, useState } from "react";
 import {
   useCollectionData,
   useDocumentData,
 } from "react-firebase-hooks/firestore";
-import {db} from "./App";
+import { db } from "./App";
 
-function ProfileNameInput({inputRef, onNameSubmit, defaultValue = ""}) {
+function ProfileNameInput({ inputRef, onNameSubmit, defaultValue = "" }) {
   const [error, setError] = useState("");
   const [playerInfo] = useDocumentData(doc(db, "cache", "playerInfo"));
   const [value, setValue] = useState(defaultValue);
@@ -36,7 +36,8 @@ function ProfileNameInput({inputRef, onNameSubmit, defaultValue = ""}) {
           e.preventDefault();
 
           if (validate(value)) onNameSubmit(value);
-        }}>
+        }}
+      >
         <TextField
           onChange={(e) => {
             setValue(e.target.value.trim());
@@ -53,7 +54,8 @@ function ProfileNameInput({inputRef, onNameSubmit, defaultValue = ""}) {
           id="nameInput"
           label="Name"
           fullWidth
-          variant="standard"></TextField>
+          variant="standard"
+        ></TextField>
       </form>
     </DialogContent>
   );

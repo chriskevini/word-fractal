@@ -1,4 +1,4 @@
-import {readFileSync, writeFileSync} from "fs";
+import { readFileSync, writeFileSync } from "fs";
 
 //TODO overrideWordList() which changes WordsEN
 
@@ -269,8 +269,8 @@ const pack = (board, todo) => {
   }
   insertedInfo.blanksFilled = fillBlanks(board, originLetter);
 
-  const {log, ...info} = insertedInfo;
-  return {words: log, info: info};
+  const { log, ...info } = insertedInfo;
+  return { words: log, info: info };
 };
 
-export {initBoard, printBoard, pack};
+export { initBoard, printBoard, pack };

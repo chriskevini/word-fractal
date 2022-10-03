@@ -12,7 +12,8 @@ export function WinnerBanner({ setIsProfileModalOpen, game, sx }) {
         // marginX: "auto",
         alignItems: "center",
         ...sx,
-      }}>
+      }}
+    >
       {/* <Fade in={isGameOver}> */}
       <Box
         onClick={() => {
@@ -27,7 +28,8 @@ export function WinnerBanner({ setIsProfileModalOpen, game, sx }) {
           // zIndex: "1",
           cursor: "pointer",
           transition: "filter 0.5s, text-shadow 0.5s",
-        }}>
+        }}
+      >
         Winner
       </Box>
       <PlayerTag

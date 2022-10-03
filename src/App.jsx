@@ -5,15 +5,15 @@ import {
   GlobalStyles,
   ThemeProvider,
 } from "@mui/material";
-import {initializeApp} from "firebase/app";
-import {getAuth, onAuthStateChanged, signInAnonymously} from "firebase/auth";
-import {getFirestore} from "firebase/firestore";
-import {getFunctions} from "firebase/functions";
-import {createContext, useState} from "react";
-import {Alerts} from "./Alerts";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInAnonymously } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getFunctions } from "firebase/functions";
+import { createContext, useState } from "react";
+import { Alerts } from "./Alerts";
 import Game from "./Game";
 import GameSelector from "./GameSelector";
-import {useLocalStorage} from "./useLocalStorage";
+import { useLocalStorage } from "./useLocalStorage";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -83,8 +83,8 @@ function App() {
   const [gameId, setGameId] = useState("");
   const [alerts, setAlerts] = useState([]);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const handleAlert = ({status, message}) => {
-    setAlerts((prev) => [{status, message}, ...prev]);
+  const handleAlert = ({ status, message }) => {
+    setAlerts((prev) => [{ status, message }, ...prev]);
     setIsAlertOpen(true);
   };
   // useWindowSize();
@@ -105,21 +105,20 @@ function App() {
           <CssBaseline />
           <GlobalStyles
             styles={{
-              body: {WebkitTextStroke: darkMode ? "0.5px #111" : ""},
+              body: { WebkitTextStroke: darkMode ? "0.5px #111" : "" },
             }}
           />
           <Box className="App">
             {gameId ? (
-              <Game
-                gameId={gameId}
-                setGameId={setGameId}></Game>
+              <Game gameId={gameId} setGameId={setGameId}></Game>
             ) : (
               <GameSelector handleChooseGame={handleChooseGame}></GameSelector>
             )}
             <Alerts
               alerts={alerts}
               isAlertOpen={isAlertOpen}
-              setIsAlertOpen={setIsAlertOpen}></Alerts>
+              setIsAlertOpen={setIsAlertOpen}
+            ></Alerts>
           </Box>
         </ThemeProvider>
       </DarkModeContext.Provider>

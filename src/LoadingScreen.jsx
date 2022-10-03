@@ -32,7 +32,8 @@ export function LoadingScreen({ cellSize }) {
           //   },
           // },
           // animation: "lmao 1.5s infinite",
-        }}>
+        }}
+      >
         <LoadingCell size={cellSize} />
         <LoadingCell size={cellSize} />
         <LoadingCell size={cellSize} />

@@ -1,8 +1,8 @@
 /* eslint-disable no-irregular-whitespace */
 const fetch = require("node-fetch");
-const {functions, db, admin} = require("./admin");
+const { functions, db, admin } = require("./admin");
 const cheerio = require("cheerio");
-const {deflate, inflate} = require("pako");
+const { deflate, inflate } = require("pako");
 
 // const ERRORS = {
 
@@ -26,7 +26,7 @@ exports.checkPlayedWord = functions.https.onCall(async (data, context) => {
 
   return db
     .runTransaction(async (transaction) => {
-      const {gameId, chainCoords, word: submittedWord} = data;
+      const { gameId, chainCoords, word: submittedWord } = data;
       const gameRef = db.doc("games/" + data.gameId);
       const gameSnapshot = await gameRef.get();
       const game = gameSnapshot.data();
@@ -45,7 +45,7 @@ exports.checkPlayedWord = functions.https.onCall(async (data, context) => {
       //show error to player because this is a reachable state by the client
       //when another player wins the game while this player has submission dialog open
       if (game.state != "live") {
-        return {status: "error", message: "This game is over"};
+        return { status: "error", message: "This game is over" };
       }
 
       let board = game.board;
@@ -62,7 +62,7 @@ exports.checkPlayedWord = functions.https.onCall(async (data, context) => {
       }
 
       const playedWords = game.playedWordsDeflated
-        ? JSON.parse(inflate(game.playedWordsDeflated, {to: "string"}))
+        ? JSON.parse(inflate(game.playedWordsDeflated, { to: "string" }))
         : [];
       const alreadyPlayedWordsCoords = playedWords.map((w) => w.chainCoords);
       if (alreadyPlayedWordsCoords.includes(chainCoords))
@@ -243,12 +243,12 @@ exports.checkPlayedWord = functions.https.onCall(async (data, context) => {
           },
         };
 
-        medalInformation = {medals: (player.medals || "") + "🏅"};
+        medalInformation = { medals: (player.medals || "") + "🏅" };
       }
 
       const newPlayedWordsDeflated = deflate(
         JSON.stringify([...playedWords, newPlayedWord]),
-        {level: 9}
+        { level: 9 }
       );
 
       transaction.update(gameRef, {
@@ -271,7 +271,7 @@ exports.checkPlayedWord = functions.https.onCall(async (data, context) => {
               : player.longestWord,
           ...medalInformation,
         },
-        {merge: true}
+        { merge: true }
       );
 
       if (wonGame) {

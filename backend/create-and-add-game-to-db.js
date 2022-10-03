@@ -1,25 +1,30 @@
-import {loadEnv} from "vite";
+import { loadEnv } from "vite";
 import commandLineArgs from "command-line-args";
 
-import {initBoard, printBoard, pack} from "./generate-board.js";
-import {writeFileSync} from "fs";
-import {initializeApp} from "firebase/app";
-import {getFirestore} from "firebase/firestore";
-import {serverTimestamp, writeBatch, collection, doc} from "firebase/firestore";
+import { initBoard, printBoard, pack } from "./generate-board.js";
+import { writeFileSync } from "fs";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import {
+  serverTimestamp,
+  writeBatch,
+  collection,
+  doc,
+} from "firebase/firestore";
 
 import path from "path";
-import {fileURLToPath} from "url";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const optionDefinitions = [
-  {name: "name", alias: "n", type: String},
-  {name: "icon", alias: "i", type: String},
-  {name: "size", alias: "s", type: Number},
-  {name: "origin", alias: "o", type: String},
-  {name: "mode", alias: "m", type: String},
-  {name: "dontcommit", alias: "d", type: Boolean},
-  {name: "print", alias: "p", type: Boolean},
+  { name: "name", alias: "n", type: String },
+  { name: "icon", alias: "i", type: String },
+  { name: "size", alias: "s", type: Number },
+  { name: "origin", alias: "o", type: String },
+  { name: "mode", alias: "m", type: String },
+  { name: "dontcommit", alias: "d", type: Boolean },
+  { name: "print", alias: "p", type: Boolean },
 ];
 
 const options = commandLineArgs(optionDefinitions);
@@ -80,7 +85,7 @@ myBoard[0][boardCenter] = options.origin;
 const todo = [...Array(10).fill([options.origin, [boardCenter, 0]])];
 
 console.time("Packed board in");
-const {words, info} = pack(myBoard, todo);
+const { words, info } = pack(myBoard, todo);
 console.timeEnd("Packed board in");
 if (options.print) printBoard(myBoard);
 

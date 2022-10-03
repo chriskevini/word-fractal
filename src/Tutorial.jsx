@@ -1,8 +1,8 @@
-import {Box, Dialog} from "@mui/material";
+import { Box, Dialog } from "@mui/material";
 import React from "react";
-import {vmin} from "./utils";
+import { vmin } from "./utils";
 
-function Tutorial({open = false, onClose}) {
+function Tutorial({ open = false, onClose }) {
   return (
     <Dialog
       open={open}
@@ -16,7 +16,8 @@ function Tutorial({open = false, onClose}) {
           display: "grid",
           placeItems: "center",
         },
-      }}>
+      }}
+    >
       <Box
         bgcolor="#02021D" //darkmode paper
         sx={{
@@ -34,14 +35,16 @@ function Tutorial({open = false, onClose}) {
         width="70vmin"
         height="70vmin"
         borderRadius={3}
-        overflow="hidden">
+        overflow="hidden"
+      >
         <video
           autoPlay
           loop
           // controls
           width="100%"
           height="100%"
-          style={{objectFit: "cover"}}>
+          style={{ objectFit: "cover" }}
+        >
           <source src="https://firebasestorage.googleapis.com/v0/b/word-fractal-dev.appspot.com/o/tutorial-optimized.mp4?alt=media&token=5c62cc26-c3a5-473c-b4f3-599498a22dff" />
         </video>
       </Box>

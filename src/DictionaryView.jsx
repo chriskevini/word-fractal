@@ -7,13 +7,13 @@ import {
   IconButton,
 } from "@mui/material";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import {Box, Stack} from "@mui/system";
-import {Timestamp} from "firebase/firestore";
-import React, {useEffect} from "react";
-import {useMemo} from "react";
-import {useLocalStorage} from "./useLocalStorage";
+import { Box, Stack } from "@mui/system";
+import { Timestamp } from "firebase/firestore";
+import React, { useEffect } from "react";
+import { useMemo } from "react";
+import { useLocalStorage } from "./useLocalStorage";
 import imgNotFound from "/assets/image-not-found.jpg";
-import {useState} from "react";
+import { useState } from "react";
 
 function DictionaryView({
   playedWords,
@@ -88,7 +88,8 @@ function DictionaryView({
           borderRadius: "20px",
           border: "4px solid " + playerColor,
         },
-      }}>
+      }}
+    >
       <Box
         sx={{
           backgroundColor: "background.paper",
@@ -105,7 +106,8 @@ function DictionaryView({
           flexDirection: "column",
           lineHeight: 1.1,
           position: "relative",
-        }}>
+        }}
+      >
         <Box
           sx={{
             background: `url(${imgNotFound}) #0008`,
@@ -124,7 +126,8 @@ function DictionaryView({
             },
             animation: "blurIn 6s",
             clipPath: "inset(0px round 20px)",
-          }}></Box>
+          }}
+        ></Box>
         <img
           src={`${image}`}
           width="100%"
@@ -150,12 +153,14 @@ function DictionaryView({
             textAlign: "center",
             position: "relative",
             // alignItems: "center",
-          }}>
+          }}
+        >
           {kanji || word}
           {audio && (
             <IconButton
               onClick={() => new Audio(audio).play()}
-              sx={{mr: "-1.25em", p: 0, pl: "0.25em"}}>
+              sx={{ mr: "-1.25em", p: 0, pl: "0.25em" }}
+            >
               <VolumeUpIcon />
             </IconButton>
           )}
@@ -169,8 +174,9 @@ function DictionaryView({
             mb: "0.25rem",
             opacity: 0.5,
             fontSize: "0.8rem",
-          }}>
-          <span style={{fontStyle: "italic"}}>{pos}</span>
+          }}
+        >
+          <span style={{ fontStyle: "italic" }}>{pos}</span>
           <span>{pronunciation}</span>
           {pitch && (
             <Stack direction="row">
@@ -189,7 +195,8 @@ function DictionaryView({
                         ? "1px solid transparent"
                         : "1px solid",
                       borderLeft: i === 0 ? "" : "1px solid",
-                    }}>
+                    }}
+                  >
                     {str.part}
                   </Box>
                 );
@@ -197,17 +204,19 @@ function DictionaryView({
             </Stack>
           )}
         </Stack>
-        <Box sx={{mx: "1rem", mb: "1rem"}}>
+        <Box sx={{ mx: "1rem", mb: "1rem" }}>
           {(preferEnDefinitions ? enDefinition : jpTranslation) ||
             enTranslation}
         </Box>
-        <Box sx={{mx: "1rem", mb: "0.25rem", opacity: 0.5, fontSize: "0.8rem"}}>
+        <Box
+          sx={{ mx: "1rem", mb: "0.25rem", opacity: 0.5, fontSize: "0.8rem" }}
+        >
           {preferEnDefinitions ? "" : jpSentence}
         </Box>
-        <Box sx={{mx: "1rem", opacity: 0.5, fontSize: "0.8rem"}}>
+        <Box sx={{ mx: "1rem", opacity: 0.5, fontSize: "0.8rem" }}>
           {enSentence}
         </Box>
-        <Box sx={{flexGrow: 1}}></Box>
+        <Box sx={{ flexGrow: 1 }}></Box>
         <Box
           component="a"
           href={
@@ -231,7 +240,8 @@ function DictionaryView({
             fontStyle: "italic",
             cursor: "pointer",
             width: "fit-content",
-          }}>
+          }}
+        >
           See more
         </Box>
         <Box
@@ -256,13 +266,15 @@ function DictionaryView({
             justifyContent: "space-between",
             px: "0.5rem",
             mb: "-4px",
-          }}>
+          }}
+        >
           <span>{icon + playerName}</span>
           <span
             style={{
               WebkitTextStroke: "0px",
               color: "#0004",
-            }}>
+            }}
+          >
             {relativeTimestamp(createdAt)}
           </span>
         </Box>
@@ -274,13 +286,13 @@ function DictionaryView({
 export default DictionaryView;
 
 function getParents(playedWords, currentWord) {
-  const {chainCoords} = currentWord;
+  const { chainCoords } = currentWord;
   const startOfWord = chainCoords.split(" ")[0];
   return playedWords.filter((pw) => pw.chainCoords.endsWith(startOfWord));
 }
 
 function getSiblings(playedWords, currentWord) {
-  const {chainCoords} = currentWord;
+  const { chainCoords } = currentWord;
   const startOfWord = chainCoords.split(" ")[0];
   return playedWords.filter(
     (pw) =>
@@ -289,7 +301,7 @@ function getSiblings(playedWords, currentWord) {
 }
 
 function getChildren(playedWords, currentWord) {
-  const {chainCoords} = currentWord;
+  const { chainCoords } = currentWord;
   const endOfWord = chainCoords.split(" ")[chainCoords.split(" ").length - 1]; //.at() broken
   return playedWords.filter((pw) => pw.chainCoords.startsWith(endOfWord));
 }

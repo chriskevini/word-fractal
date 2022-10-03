@@ -21,7 +21,8 @@ export function PlayerTag({
         cursor: "pointer",
         transition: "background 0.5s",
         ...sx,
-      }}>
+      }}
+    >
       {player.icon + player.playerName}
     </Paper>
   );

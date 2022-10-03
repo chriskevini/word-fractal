@@ -470,7 +470,8 @@ const Game = function ({ gameId, setGameId }) {
             isMinimapOpen={isMinimapOpen}
             setIsMinimapOpen={setIsMinimapOpen}
             isGameOver={isGameOver}
-            board={board}></Minimap>
+            board={board}
+          ></Minimap>
 
           <Popover
             open={isPlayerTagOpen}
@@ -491,7 +492,8 @@ const Game = function ({ gameId, setGameId }) {
                 borderRadius: "1.5rem",
                 fontFamily: "ubuntu",
               },
-            }}>
+            }}
+          >
             {otherPlayerTag}
           </Popover>
           <GameBottomBar
@@ -528,7 +530,8 @@ const Game = function ({ gameId, setGameId }) {
             player={{ ...tempOtherPlayer, ...otherPlayer }}
             editable={false}
             open={isProfileModalOpen}
-            onClose={() => setIsProfileModalOpen(false)}></Profile>
+            onClose={() => setIsProfileModalOpen(false)}
+          ></Profile>
 
           <WordSubmissionDialog
             selection={selection}

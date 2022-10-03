@@ -18,22 +18,19 @@ export function Alerts(props) {
       }}
       onClose={(e, r) => {
         if (r != "clickaway") props.setIsAlertOpen(false);
-      }}>
+      }}
+    >
       <Alert
         onClose={() => props.setIsAlertOpen(false)}
         severity={props.alerts[0]?.status}
         variant="filled"
-        sx={{ WebkitTextStroke: "0", whiteSpace: "pre-wrap" }}>
+        sx={{ WebkitTextStroke: "0", whiteSpace: "pre-wrap" }}
+      >
         {props.alerts[0]?.message}
       </Alert>
     </Snackbar>
   );
 }
 function SlideFromRight(props) {
-  return (
-    <Slide
-      {...props}
-      direction="left"
-    />
-  );
+  return <Slide {...props} direction="left" />;
 }

@@ -1,3 +1,16 @@
+:root {
+  --red: #ef5350;
+  --orange: #ffa726;
+  --yellow: #ffeb3b;
+  --green: #66bb6a;
+  --blue: #42a5f5;
+  --purple: #ba68c8;
+}
+
+.bg-red {
+  background-color: var(--red);
+}
+
 body {
   margin: 0;
   display: flex;

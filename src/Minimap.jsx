@@ -39,7 +39,8 @@ export function Minimap({
           //   : "translate(-50vw, 50vh)",
           // transition: "transform 0.5s",
         },
-      }}>
+      }}
+    >
       <FixedSizeGrid
         itemData={{
           boardStyles: boardStyles,
@@ -53,7 +54,8 @@ export function Minimap({
         columnCount={board.length}
         rowCount={board.length}
         columnWidth={mapWidth / board.length}
-        rowHeight={mapWidth / board.length}>
+        rowHeight={mapWidth / board.length}
+      >
         {minimapCell}
       </FixedSizeGrid>
     </Dialog>
@@ -85,6 +87,7 @@ const minimapCell = ({ columnIndex, rowIndex, style, data }) => {
           (data.isGameOver
             ? "opacity(0.5) grayscale(0.2) brightness(0.8)"
             : ""),
-      }}></div>
+      }}
+    ></div>
   );
 };

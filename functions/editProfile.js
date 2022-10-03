@@ -1,10 +1,10 @@
-const {functions, db, admin} = require("./admin");
-const {deflate, inflate} = require("pako");
+const { functions, db, admin } = require("./admin");
+const { deflate, inflate } = require("pako");
 
 exports.editProfile = functions.https.onCall(async (data, context) => {
   console.log(data);
 
-  const {pendingChanges} = data;
+  const { pendingChanges } = data;
 
   const playerId = context.auth.uid;
   const playerRef = db.doc("players/" + playerId);
@@ -74,12 +74,12 @@ exports.editProfile = functions.https.onCall(async (data, context) => {
 
       games.forEach((game) => {
         const gameRef = db.doc("games/" + game.id);
-        const {winner} = game;
+        const { winner } = game;
         const playedWords = game.playedWordsDeflated
-          ? JSON.parse(inflate(game.playedWordsDeflated, {to: "string"}))
+          ? JSON.parse(inflate(game.playedWordsDeflated, { to: "string" }))
           : [];
         const updatedWinnerField = winner
-          ? {winner: updateWinner(winner, playerId, pendingChanges)}
+          ? { winner: updateWinner(winner, playerId, pendingChanges) }
           : {};
         const updatedPlayedWords = updatePlayedWords(
           playedWords,
@@ -88,7 +88,7 @@ exports.editProfile = functions.https.onCall(async (data, context) => {
         );
         const updatedPlayedWordsDeflated = deflate(
           JSON.stringify(updatedPlayedWords),
-          {level: 9}
+          { level: 9 }
         );
         transaction.update(gameRef, {
           playedWordsDeflated: updatedPlayedWordsDeflated,
@@ -100,7 +100,7 @@ exports.editProfile = functions.https.onCall(async (data, context) => {
         ...pendingChanges,
         lastEdit: admin.firestore.Timestamp.now(),
       });
-      return {status: "success"};
+      return { status: "success" };
     })
     .then((res) => res)
     .catch((e) => {
@@ -114,12 +114,12 @@ exports.editProfile = functions.https.onCall(async (data, context) => {
 
 function updateWinner(winner, playerId, pendingChanges) {
   if (!winner || winner.id !== playerId) return winner;
-  else return {...winner, ...pendingChanges};
+  else return { ...winner, ...pendingChanges };
 }
 
 function updatePlayedWords(playedWords, playerId, pendingChanges) {
   return playedWords.map((playedWord) => {
     if (playedWord.createdBy !== playerId) return playedWord;
-    else return {...playedWord, ...pendingChanges};
+    else return { ...playedWord, ...pendingChanges };
   });
 }

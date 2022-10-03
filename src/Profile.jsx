@@ -1,37 +1,25 @@
+import EditOffIcon from "@mui/icons-material/EditOff";
+import { LoadingButton } from "@mui/lab";
 import {
   Box,
-  Container,
-  Badge,
-  Button,
-  Chip,
-  Paper,
-  Typography,
-  Stack,
-  IconButton,
   Dialog,
+  IconButton,
+  Paper,
   Popover,
+  Stack,
+  Typography,
   Zoom,
 } from "@mui/material";
-import EditOffIcon from "@mui/icons-material/EditOff";
-import {LoadingButton} from "@mui/lab";
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import EditIcon from "@mui/icons-material/Edit";
-import {
-  connectFirestoreEmulator,
-  doc,
-  setDoc,
-  updateDoc,
-  serverTimestamp,
-  Timestamp,
-} from "firebase/firestore";
-import {blue, green, orange, red} from "@mui/material/colors";
+import { Timestamp } from "firebase/firestore";
+import { httpsCallable } from "firebase/functions";
+import { AlertsContext, functions } from "./App";
+import ColorPicker from "./ColorPicker";
 import EmojiPicker from "./EmojiPicker";
 import ProfileNameInput from "./ProfileNameInput";
-import ColorPicker from "./ColorPicker";
-import {db, auth, functions, AlertsContext} from "./App";
-import {vh, vmin, vw} from "./utils";
-import {httpsCallable} from "firebase/functions";
+import { vmin } from "./utils";
 
 //TODO save progress: link account to gmail,etc.
 export let emojiData = null;
@@ -113,7 +101,8 @@ function Profile({
           transition: "background 0.3s",
           transitionDelay: "0.2s",
         },
-      }}>
+      }}
+    >
       <Stack
         sx={{
           alignItems: "center",
@@ -121,7 +110,8 @@ function Profile({
           height: "80vmin",
           // margin: "0 auto",
           overflow: "hidden",
-        }}>
+        }}
+      >
         <Stack
           direction="row"
           justifyContent="center"
@@ -133,8 +123,9 @@ function Profile({
             <IconButton
               onClick={() => setIsEmojiPickerOpen(true)}
               size="small"
-              sx={{opacity: "50%"}}>
-              <EditIcon sx={{fontSize: "4vmin", color: "black"}} />
+              sx={{ opacity: "50%" }}
+            >
+              <EditIcon sx={{ fontSize: "4vmin", color: "black" }} />
             </IconButton>
           )}
 
@@ -149,16 +140,19 @@ function Profile({
               background: pendingChanges.color || player.color,
               transition: "background 0.3s",
               transitionDelay: "0.2s",
-            }}>
+            }}
+          >
             <span
-              style={{cursor: "pointer"}}
-              onClick={() => editable && !locked && setIsEmojiPickerOpen(true)}>
+              style={{ cursor: "pointer" }}
+              onClick={() => editable && !locked && setIsEmojiPickerOpen(true)}
+            >
               <span>{pendingChanges.icon || player.icon}</span>
             </span>
             <Box
               component="span"
-              sx={{cursor: "pointer"}}
-              onClick={() => editable && !locked && setIsNameInputOpen(true)}>
+              sx={{ cursor: "pointer" }}
+              onClick={() => editable && !locked && setIsNameInputOpen(true)}
+            >
               {truncateName(pendingChanges.playerName || player.playerName)}
             </Box>
           </Paper>
@@ -169,21 +163,19 @@ function Profile({
                 setIsNameInputOpen(true);
               }}
               size="small"
-              sx={{opacity: "50%"}}>
-              <EditIcon sx={{fontSize: "4vmin", color: "black"}} />
+              sx={{ opacity: "50%" }}
+            >
+              <EditIcon sx={{ fontSize: "4vmin", color: "black" }} />
             </IconButton>
           )}
         </Stack>
 
-        <Box
-          fontSize="8vmin"
-          height="8vmin"
-          lineHeight="1"
-          my="2vmin">
+        <Box fontSize="8vmin" height="8vmin" lineHeight="1" my="2vmin">
           {medals.length <= 20 ? (
             <Box
               letterSpacing={-medals.length / 4 + "vmin"}
-              ml={-medals.length / 4 + "vmin"}>
+              ml={-medals.length / 4 + "vmin"}
+            >
               {medals}
             </Box>
           ) : (
@@ -191,9 +183,7 @@ function Profile({
           )}
         </Box>
 
-        <Stack
-          gap="3vmin"
-          height="100%">
+        <Stack gap="3vmin" height="100%">
           {[
             ["Points", player.points || 0],
             ["Longest Word", player.longestWord || "　"],
@@ -208,18 +198,12 @@ function Profile({
                 // justifyContent: "space-between",
                 borderRadius: "4vmin",
                 lineHeight: "1",
-              }}>
-              <Box
-                fontSize="3.5vmin"
-                fontStyle="italic"
-                m="1vmin"
-                mb="-1vmin">
+              }}
+            >
+              <Box fontSize="3.5vmin" fontStyle="italic" m="1vmin" mb="-1vmin">
                 {label}
               </Box>
-              <Stack
-                fontSize="9vmin"
-                flexGrow={1}
-                justifyContent="center">
+              <Stack fontSize="9vmin" flexGrow={1} justifyContent="center">
                 {value}
               </Stack>
             </Stack>
@@ -229,14 +213,16 @@ function Profile({
           direction="row"
           justifyContent="space-between"
           width="100%"
-          height="8vmin">
+          height="8vmin"
+        >
           {editable && !locked && (
             <IconButton
               onClick={() => setIsColorPickerOpen(true)}
               size="small"
-              sx={{opacity: "50%"}}>
+              sx={{ opacity: "50%" }}
+            >
               <EditIcon
-                sx={{fontSize: "4vmin", color: "black", m: "0.5vmin"}}
+                sx={{ fontSize: "4vmin", color: "black", m: "0.5vmin" }}
               />
             </IconButton>
           )}
@@ -245,9 +231,10 @@ function Profile({
             <IconButton
               onClick={(e) => setLockedExplainerAnchor(e.currentTarget)}
               size="small"
-              sx={{opacity: "50%"}}>
+              sx={{ opacity: "50%" }}
+            >
               <EditOffIcon
-                sx={{fontSize: "4vmin", color: "black", m: "0.5vmin"}}
+                sx={{ fontSize: "4vmin", color: "black", m: "0.5vmin" }}
               />
             </IconButton>
           )}
@@ -279,15 +266,14 @@ function Profile({
                 WebkitTextStroke: "0px",
               }}
               variant="contained"
-              size="small">
+              size="small"
+            >
               Save Changes
             </LoadingButton>
           ) : null}
           {/* Invisible button for spacing  purposes. Might be a fun easter egg*/}
-          <IconButton
-            size="small"
-            sx={{opacity: "0%"}}>
-            <EditIcon sx={{fontSize: "4vmin", m: "0.5vmin"}} />
+          <IconButton size="small" sx={{ opacity: "0%" }}>
+            <EditIcon sx={{ fontSize: "4vmin", m: "0.5vmin" }} />
           </IconButton>
         </Stack>
       </Stack>
@@ -303,12 +289,13 @@ function Profile({
             // width: "100%",
             // height: "80vmin",
           },
-        }}>
+        }}
+      >
         <EmojiPicker
           isEmojiPickerOpen={isEmojiPickerOpen}
           emojiLevel={emojiLevel}
           onEmojiSelect={(selectedEmoji) => {
-            addToPendingChanges({icon: selectedEmoji.native});
+            addToPendingChanges({ icon: selectedEmoji.native });
             setIsEmojiPickerOpen(false);
           }}
         />
@@ -316,12 +303,13 @@ function Profile({
       <Dialog
         open={isNameInputOpen}
         onClose={() => setIsNameInputOpen(false)}
-        PaperProps={{sx: {borderRadius: "8px"}}}>
+        PaperProps={{ sx: { borderRadius: "8px" } }}
+      >
         <ProfileNameInput
           inputRef={inputRef}
           defaultValue={pendingChanges.playerName || player.playerName}
           onNameSubmit={(name) => {
-            addToPendingChanges({playerName: name});
+            addToPendingChanges({ playerName: name });
             setIsNameInputOpen(false);
           }}
         />
@@ -330,7 +318,7 @@ function Profile({
         open={isColorPickerOpen}
         onClose={() => setIsColorPickerOpen(false)}
         onColorPicked={(color) => {
-          addToPendingChanges({color: color});
+          addToPendingChanges({ color: color });
           setIsColorPickerOpen(false);
         }}
       />
@@ -352,7 +340,8 @@ function Profile({
             mt: ".5rem",
             borderRadius: ".5rem",
           },
-        }}>
+        }}
+      >
         <Typography variant="body1">
           Editing is currently locked
           <br />
@@ -376,11 +365,11 @@ function Profile({
   function submitChanges() {
     setAwaitingDb(true);
     const editProfile = httpsCallable(functions, "editProfile");
-    editProfile({pendingChanges})
+    editProfile({ pendingChanges })
       .then((res) => {
         cleanUpState();
         if (res.data.status === "error") handleAlert(res.data);
-        else handleAlert({status: "info", message: "Looking fresh 😏"});
+        else handleAlert({ status: "info", message: "Looking fresh 😏" });
         onSubmitChanges();
       })
       .catch(console.log);

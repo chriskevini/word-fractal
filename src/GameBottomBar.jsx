@@ -33,7 +33,8 @@ export function GameBottomBar({
         transition: "transform 0.5s",
       }}
       justifyContent="space-between"
-      alignItems="flex-end">
+      alignItems="flex-end"
+    >
       <MinimapButton
         setIsMinimapOpen={setIsMinimapOpen}
         player={player}
@@ -56,7 +57,8 @@ export function GameBottomBar({
         player={player}
         buttonStyle={{
           pointerEvents: "all",
-        }}></GameMenu>
+        }}
+      ></GameMenu>
     </Stack>
   );
 }

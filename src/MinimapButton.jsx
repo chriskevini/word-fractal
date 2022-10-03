@@ -20,7 +20,8 @@ export function MinimapButton({ setIsMinimapOpen, player, sx = {} }) {
         boxShadow: 3,
         transition: "background 0s",
         ...sx,
-      }}>
+      }}
+    >
       <MapIcon />
     </Button>
   );

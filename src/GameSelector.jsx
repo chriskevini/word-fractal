@@ -1,13 +1,20 @@
 import Brightness4Icon from "@mui/icons-material/Brightness4";
-import {Box, Button, IconButton, Stack, Typography, Zoom} from "@mui/material";
-import {collection, orderBy, query} from "firebase/firestore";
-import React, {useContext, useMemo} from "react";
-import {useCollectionData} from "react-firebase-hooks/firestore";
+import {
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  Typography,
+  Zoom,
+} from "@mui/material";
+import { collection, orderBy, query } from "firebase/firestore";
+import React, { useContext, useMemo } from "react";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import bgDark from "/assets/bg-dark.webp";
 import bgLight from "/assets/bg-light.webp";
-import {DarkModeContext, db} from "./App";
+import { DarkModeContext, db } from "./App";
 
-function GameSelector({handleChooseGame}) {
+function GameSelector({ handleChooseGame }) {
   const usingHTBrowser = navigator.userAgent.indexOf("hellotalk") > -1;
   const [darkMode, toggleDarkMode] = useContext(DarkModeContext);
   const gameStatesRef = collection(db, "gameStates");
@@ -19,16 +26,17 @@ function GameSelector({handleChooseGame}) {
   const deadGames = gameStates?.filter((game) => game.state === "dead") || [];
   return (
     <>
-      <Background {...{darkMode}} />
-      <Header {...{usingHTBrowser, toggleDarkMode}} />
+      <Background {...{ darkMode }} />
+      <Header {...{ usingHTBrowser, toggleDarkMode }} />
       <Box
         sx={{
           overflow: "scroll",
           width: "100vw",
           height: "100vh",
           textAlign: "center",
-        }}>
-        <Stack sx={{alignItems: "center"}}>
+        }}
+      >
+        <Stack sx={{ alignItems: "center" }}>
           <Typography
             sx={{
               fontSize: "12vmin",
@@ -37,7 +45,8 @@ function GameSelector({handleChooseGame}) {
               mb: "1em",
               filter: "drop-shadow(2px 6px 10px #0008)",
               WebkitTextStrokeWidth: 0,
-            }}>
+            }}
+          >
             WordFractal
           </Typography>
 
@@ -46,12 +55,13 @@ function GameSelector({handleChooseGame}) {
               fontSize="30px"
               mt="60px"
               mx="10%"
-              sx={{filter: "drop-shadow(1px 3px 5px #0008)"}}>
+              sx={{ filter: "drop-shadow(1px 3px 5px #0008)" }}
+            >
               Please open this page on another browser.
             </Typography>
           ) : (
             <Buttons
-              {...{gameStates, liveGames, deadGames, handleChooseGame}}
+              {...{ gameStates, liveGames, deadGames, handleChooseGame }}
             />
           )}
         </Stack>
@@ -63,7 +73,7 @@ function GameSelector({handleChooseGame}) {
 
 export default GameSelector;
 
-function Buttons({gameStates, liveGames, deadGames, handleChooseGame}) {
+function Buttons({ gameStates, liveGames, deadGames, handleChooseGame }) {
   if (!gameStates) return null;
   return (
     <Stack
@@ -75,20 +85,20 @@ function Buttons({gameStates, liveGames, deadGames, handleChooseGame}) {
       mx="12px"
       mt="20px"
       mb="60px"
-      maxWidth="400px">
+      maxWidth="400px"
+    >
       <Zoom in>
         <Typography
           width="100%"
           fontSize="30px"
-          sx={{filter: "drop-shadow(1px 3px 5px #0008)"}}>
+          sx={{ filter: "drop-shadow(1px 3px 5px #0008)" }}
+        >
           Join a game
         </Typography>
       </Zoom>
       {[...liveGames, ...deadGames].map((game) => {
         return (
-          <Zoom
-            in
-            key={game.id}>
+          <Zoom in key={game.id}>
             <Button
               onClick={() => handleChooseGame(game.id)}
               size="small"
@@ -101,10 +111,12 @@ function Buttons({gameStates, liveGames, deadGames, handleChooseGame}) {
                 bgcolor: game.state === "dead" ? "transparent" : "",
                 filter:
                   game.state === "dead" ? "grayscale(1.0) contrast(0.5) " : "",
-              }}>
+              }}
+            >
               <Typography
                 fontSize={game.state === "dead" ? "48px" : "64px"}
-                lineHeight={game.state === "dead" ? "48px" : "64px"}>
+                lineHeight={game.state === "dead" ? "48px" : "64px"}
+              >
                 {game.icon || game.name}
               </Typography>
             </Button>
@@ -115,7 +127,7 @@ function Buttons({gameStates, liveGames, deadGames, handleChooseGame}) {
   );
 }
 
-function Background({darkMode}) {
+function Background({ darkMode }) {
   const backgroundOffset = useMemo(
     () => Math.floor(Math.random() * -1000) + "s",
     []
@@ -148,7 +160,8 @@ function Background({darkMode}) {
         animation: "slide 1000s infinite  linear",
         animationDelay: backgroundOffset,
         zIndex: -100,
-      }}></Box>
+      }}
+    ></Box>
   );
 }
 
@@ -168,7 +181,8 @@ function Footer() {
         py: "0.5rem",
         fontSize: "0.75rem",
         // opacity: 0.5,
-      }}>
+      }}
+    >
       <Box>Made with ❤ from Canada.</Box>
       <Box
         component="a"
@@ -176,16 +190,17 @@ function Footer() {
         sx={{
           color: "text.primary",
           textDecoration: "none",
-        }}>
+        }}
+      >
         Contact me: wordfractal@gmail.com
       </Box>
     </Stack>
   );
 }
 
-function Header({usingHTBrowser, toggleDarkMode}) {
+function Header({ usingHTBrowser, toggleDarkMode }) {
   return (
-    <Box sx={{position: "fixed", top: 0, minHeight: "10vh"}}>
+    <Box sx={{ position: "fixed", top: 0, minHeight: "10vh" }}>
       {usingHTBrowser ? (
         <Box
           sx={{
@@ -194,14 +209,16 @@ function Header({usingHTBrowser, toggleDarkMode}) {
             top: "5vw",
             right: "5vw",
             fontSize: "20px",
-          }}>
+          }}
+        >
           👆
         </Box>
       ) : (
         <IconButton
           onClick={toggleDarkMode}
-          sx={{position: "fixed", top: "5vw", right: "5vw"}}>
-          <Brightness4Icon sx={{fontSize: "1.5rem"}} />
+          sx={{ position: "fixed", top: "5vw", right: "5vw" }}
+        >
+          <Brightness4Icon sx={{ fontSize: "1.5rem" }} />
         </IconButton>
       )}
     </Box>

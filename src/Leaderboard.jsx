@@ -8,9 +8,7 @@ function LeaderboardCard({ player }) {
 function Leaderboard({ open, onClose }) {
   //query players order by points descending
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}>
+    <Dialog open={open} onClose={onClose}>
       <Container sx={{ textAlign: "center", p: "40px", pt: "20px" }}>
         <h2>🏆</h2>
         <div>🚧 Under Construction 🚧</div>
