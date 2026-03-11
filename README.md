@@ -14,6 +14,14 @@ WordFractal is a unique word puzzle game that combines elements of word-building
 
 The game supports both English and Japanese (Hiragana/Katakana) dictionaries.
 
+## Screenshots
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/74f5b952-e16f-4e57-8f41-0aeb6c17d0ee" width="240">
+  <img src="https://github.com/user-attachments/assets/fb4787f0-8bb1-474e-8b4e-87db6f4d75aa" width="240">
+  <img src="https://github.com/user-attachments/assets/5ad0b1e8-8803-4ada-9068-ffd0ea5b5b28" width="240">
+</div>
+
 ## Tech Stack
 
 ### Frontend
